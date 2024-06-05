@@ -3,7 +3,7 @@ import {
   clearAccessTokenToSession,
   getAccessTokenToSession,
   saveAccessTokenToSession,
-} from "../Utils/auth";
+} from "../utils/auth";
 
 const axiosInstance = axios.create({
   baseURL: "http://localhost:8080",

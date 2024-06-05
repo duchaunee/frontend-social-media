@@ -1,39 +1,46 @@
 /* eslint-disable react/prop-types */
 import clsx from "clsx";
-import { useEffect, useState } from "react";
 import { userApi } from "../../apis";
 import toast from "react-hot-toast";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 const SuggestFriend = ({ className }) => {
-  const [suggested, setSuggested] = useState([]);
+  const queryClient = useQueryClient();
 
-  const getSuggestFriend = async () => {
-    const suggestFr = await userApi.getSuggestFriend({ limit: 3 });
-    if (suggestFr.success) {
-      setSuggested(suggestFr.data);
-    }
-  };
-  useEffect(() => {
-    getSuggestFriend();
-  }, []);
+  const { data: suggested } = useQuery({
+    queryKey: ["getSuggestFriend"],
+    queryFn: () => userApi.getSuggestFriend({ limit: 3 }),
+  });
 
-  const handleAddFriend = async (friend_id) => {
-    try {
-      const requestFr = await userApi.requestAddFriend({
+  const requestAddFriendMutation = useMutation({
+    mutationFn: (friend_id) =>
+      userApi.requestAddFriend({
         requestTo: friend_id,
-      });
+      }),
+    onSuccess: (requestFr) => {
       if (requestFr.sucess) {
+        //invalidateQueries getSuggestFriend khi ấn add friend
+        queryClient.invalidateQueries({ queryKey: ["getSuggestFriend"] });
         toast.success(requestFr.message);
       }
+    },
+  });
+
+  const handleAddFriend = (friend_id) => {
+    try {
+      // await requestAddFriendMutation.mutateAsync(friend_id);
+      // console.log("before");
+      requestAddFriendMutation.mutate(friend_id);
+      // console.log("after");
     } catch (error) {
       console.log(error);
       toast(error.message);
     }
   };
 
-  if (suggested?.length <= 0) return;
+  if (suggested?.data?.length <= 0) return;
   return (
-    <div className={clsx("w-[320px]", className)}>
+    <div className={clsx("w-full", className)}>
       <div className="flex items-center justify-between py-1 px-4 text-[14px] font-semibold text-[#737373]">
         <span className="">Suggested for you</span>
         <button className="text-[#000] hover:text-[#737373] text-[12px]">
@@ -42,18 +49,14 @@ const SuggestFriend = ({ className }) => {
       </div>
       <ul role="list" className="divide-y divide-slate-200">
         {/* Remove top/bottom padding when first/last child */}
-        {suggested &&
-          suggested.map((f) => (
+        {suggested?.data &&
+          suggested?.data.map((f) => (
             <li
               key={f._id}
               className="flex pb-2 pt-4 px-4 last:pb-0 items-center"
             >
               <div className="flex">
-                <img
-                  className="h-10 w-10 rounded-full"
-                  src={f?.profileUrl}
-                  alt
-                />
+                <img className="h-10 w-10 rounded-full" src={f?.profileUrl} />
                 <div className="ml-3 overflow-hidden text-[#737373]">
                   <p className="text-sm font-medium text-black">
                     {f.firstName} {f.lastName}

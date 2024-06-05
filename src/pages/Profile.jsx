@@ -80,19 +80,10 @@ const Profile = () => {
               </div>
             </div>
             <div className="w-full md:w-1/4 p-4 text-center flex justify-center items-end">
-              <div className="w-full relative md:w-3/4 text-center flex justify-center">
-                <button
-                  className="flex rounded-full"
-                  id="user-menu"
-                  aria-label="User menu"
-                  aria-haspopup="true"
-                >
-                  <img
-                    className="h-[180px] w-[180px] rounded-full"
-                    src={user?.profileUrl}
-                  />
-                </button>
-              </div>
+              <img
+                className="h-[180px] aspect-square rounded-full"
+                src={user?.profileUrl}
+              />
             </div>
           </div>
 

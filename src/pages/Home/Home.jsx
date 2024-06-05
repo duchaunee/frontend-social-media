@@ -9,7 +9,7 @@ const SwitchAccount = () => {
   return (
     <li className="flex pb-2 pt-4 px-4 last:pb-0 items-center">
       <div className="flex">
-        <img className="h-10 w-10 rounded-full" src={user?.profileUrl} alt />
+        <img className="h-10 w-10 rounded-full" src={user?.profileUrl} />
         <div className="ml-3 overflow-hidden text-[#737373]">
           <p className="text-sm font-medium text-black">
             {user?.firstName} {user?.lastName}
@@ -33,7 +33,7 @@ const Home = () => {
         <PostItem></PostItem>
         <PostItem></PostItem>
       </ul>
-      <div className="pl-16">
+      <div className="w-[320px] ml-16">
         <SwitchAccount></SwitchAccount>
         <SuggestFriend className="mt-4 mb-2"></SuggestFriend>
         <FriendRequestReceived className="mt-4 mb-2"></FriendRequestReceived>

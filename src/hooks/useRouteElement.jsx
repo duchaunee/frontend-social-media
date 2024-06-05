@@ -18,16 +18,17 @@ import { AppContext } from "../contexts/App.context";
 
 const ProtectedRoute = () => {
   const { isAuthentication } = useContext(AppContext);
+  // console.log("isAuthentication: ", isAuthentication);
   return isAuthentication ? <Outlet /> : <Navigate to="/login" />;
 };
 const RejectedRoute = () => {
   const { isAuthentication } = useContext(AppContext);
-  console.log("isAuthentication: ", isAuthentication);
+  // console.log("isAuthentication: ", isAuthentication);
   return isAuthentication ? <Navigate to="/" /> : <Outlet />;
 };
 
 const useRouteElement = () => {
-  console.log("re-render useRouteElement");
+  // console.log("re-render useRouteElement");
   const routeElements = useRoutes([
     {
       path: "",

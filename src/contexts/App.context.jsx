@@ -3,7 +3,7 @@ import { createContext, useEffect, useState } from "react";
 import {
   clearAccessTokenToSession,
   getAccessTokenToSession,
-} from "../Utils/auth";
+} from "../utils/auth";
 import { userApi } from "../apis";
 
 const initialAppContext = {
