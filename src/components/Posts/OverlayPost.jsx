@@ -10,11 +10,13 @@ import { formatTimePost } from "../../utils";
 import { ThreeDot } from "../../assets/svg";
 import toast from "react-hot-toast";
 import { useRef } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const OVERLAY_ROOT = document.querySelector("#overlay");
 
 const CommentItem = ({ comment, hasReply }) => {
-  const { user } = useContext(AppContext);
+  const navigate = useNavigate();
+  const { user, setOverlayPostId } = useContext(AppContext);
   const userComment = comment?.userId;
   // console.log("comment: ", comment);
 
@@ -50,16 +52,30 @@ const CommentItem = ({ comment, hasReply }) => {
     <div className="w-full">
       <div className="bg-white w-full flex justify-between">
         <div className="flex gap-4 items-start h-fit flex-1">
-          <img
-            className="w-[36px] h-[36px] object-cover rounded-full"
-            src={userComment.profileUrl}
-            alt=""
-          />
+          <button
+            onClick={() => {
+              navigate(`/profile/${userComment._id}`);
+              setOverlayPostId(null);
+            }}
+          >
+            <img
+              className="w-[36px] h-[36px] object-cover rounded-full"
+              src={userComment.profileUrl}
+              alt=""
+            />
+          </button>
           <div className="flex flex-col h-full gap-[6px]">
             <div className="gap-2">
-              <h6 className="font-medium text-sm">
-                {userComment.firstName} {userComment.lastName}
-              </h6>
+              <button
+                onClick={() => {
+                  navigate(`/profile/${userComment._id}`);
+                  setOverlayPostId(null);
+                }}
+              >
+                <h6 className="font-medium text-sm hover:underline">
+                  {userComment.firstName} {userComment.lastName}
+                </h6>
+              </button>
               <p className="text-sm text-gray-500 flex-wrap">
                 {comment.comment}
               </p>
