@@ -54,7 +54,8 @@ const CommentItem = ({ comment, hasReply }) => {
         <div className="flex gap-4 items-start h-fit flex-1">
           <button
             onClick={() => {
-              navigate(`/profile/${userComment._id}`);
+              if (user._id === userComment._id) navigate(`/profile/me`);
+              else navigate(`/profile/${userComment._id}`);
               setOverlayPostId(null);
             }}
           >
@@ -68,7 +69,8 @@ const CommentItem = ({ comment, hasReply }) => {
             <div className="gap-2">
               <button
                 onClick={() => {
-                  navigate(`/profile/${userComment._id}`);
+                  if (user._id === userComment._id) navigate(`/profile/me`);
+                  else navigate(`/profile/${userComment._id}`);
                   setOverlayPostId(null);
                 }}
               >
