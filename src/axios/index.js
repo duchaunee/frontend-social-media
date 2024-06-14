@@ -6,7 +6,7 @@ import {
 } from "../utils/auth";
 
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:8080",
+  baseURL: "https://backend-social-media-nine.vercel.app",
   withCredentials: true,
   headers: {
     "Content-Type": "application/json",
