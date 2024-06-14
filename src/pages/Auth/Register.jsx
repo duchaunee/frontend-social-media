@@ -94,7 +94,7 @@ const Register = () => {
                 required: "Password is required",
               })}
               errors={errors}
-              type="text"
+              type="password"
             />
           </div>
           <ButtonLoading
