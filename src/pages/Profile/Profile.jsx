@@ -238,7 +238,7 @@ const Profile = () => {
               </div>
               <div className="text-left pl-4 pt-3 flex gap-2">
                 <span className="text-base font-medium text-gray-700 mr-2">
-                  <b>220</b> posts
+                  <b>{post?.length}</b> posts
                 </span>
                 <span className="text-base font-medium text-gray-700 mr-2">
                   <b>{resultUser?.friends?.length}</b> friends
