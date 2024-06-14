@@ -1,2 +1,2 @@
-export { default as SpinnerLogo } from './SpinnerLogo';
-export { default as SpinnerRing } from './SpinnerRing';
+export { default as SpinnerLogo } from "./SpinnerLogo";
+export { default as SpinnerRing } from "./SpinnerRing";

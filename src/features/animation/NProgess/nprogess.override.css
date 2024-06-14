@@ -1,0 +1,27 @@
+/* Màu sắc của thanh tiến trình */
+#nprogress .bar {
+  background: linear-gradient(
+    45deg,
+    #405de6,
+    #5851db,
+    #833ab4,
+    #c13584,
+    #e1306c,
+    #fd1d1d
+  );
+}
+
+/* Màu sắc của spinner */
+#nprogress .spinner-icon {
+  border-top-color: #29d;
+  border-left-color: #29d;
+}
+
+/* Vị trí của thanh tiến trình */
+#nprogress .bar {
+  height: 5px;
+}
+
+#nprogress .peg {
+  box-shadow: 0 0 10px #29d, 0 0 5px #29d;
+}

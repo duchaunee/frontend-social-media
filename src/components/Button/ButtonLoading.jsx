@@ -1,9 +1,14 @@
+/* eslint-disable react/prop-types */
 import clsx from "clsx";
 import { SpinnerRing } from "../Spinner";
 
-// eslint-disable-next-line react/prop-types
-const ButtonLoading = ({ loading, text, handleSubmit, ...props }) => {
-  // eslint-disable-next-line react/prop-types
+const ButtonLoading = ({
+  loading,
+  text,
+  classNameText,
+  handleSubmit,
+  ...props
+}) => {
   const { className, overrideClassName, ...other } = props;
   return (
     <button
@@ -22,7 +27,9 @@ const ButtonLoading = ({ loading, text, handleSubmit, ...props }) => {
       )}
       {...other}
     >
-      {loading ? <SpinnerRing className="text-white" /> : `${text}`}
+      <div className={classNameText}>
+        {loading ? <SpinnerRing className="text-white" /> : `${text}`}
+      </div>
     </button>
   );
 };

@@ -7,10 +7,10 @@ import { useContext, useRef, useState } from "react";
 import axiosInstance from "../../axios";
 import toast from "react-hot-toast";
 import { AppContext } from "../../contexts/App.context";
-import LoadingBar from "react-top-loading-bar";
+// import LoadingBar from "react-top-loading-bar";
 
 const Login = () => {
-  const refLoadingBar = useRef(null);
+  // const refLoadingBar = useRef(null);
   const { setIsAuthentication } = useContext(AppContext);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
@@ -24,7 +24,7 @@ const Login = () => {
   const handleLogin = async () => {
     setLoading(true);
     await new Promise((resolve, reject) => {
-      refLoadingBar.current.continuousStart(0, 300);
+      // refLoadingBar.current.continuousStart(0, 300);
       setTimeout(async () => {
         try {
           const logged = await axiosInstance.post("/auth/login", {
@@ -32,32 +32,32 @@ const Login = () => {
             password: getValues("password"),
           });
           if (logged.message === "Login successfully") {
-            refLoadingBar.current.complete();
+            // refLoadingBar.current.complete();
             setLoading(false);
             toast.success(logged.message);
-            setIsAuthentication(true);
-            navigate(`/`);
-            // window.location.reload();
+            // setIsAuthentication(true);
+            // navigate(`/`);
+            window.location.reload();
             resolve();
           }
         } catch (error) {
-          refLoadingBar.current.complete();
+          // refLoadingBar.current.complete();
           setLoading(false);
           reject(error);
           toast.error(error.message);
           console.log("Error:", error);
         }
-      }, 1000);
+      }, 500);
     });
   };
 
   return (
     <div className="flex flex-col justify-center items-center">
-      <LoadingBar
+      {/* <LoadingBar
         ref={refLoadingBar}
         color="linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d)"
         height={4}
-      />
+      /> */}
 
       <div className="bg-white border border-gray-300 w-80 py-8 flex items-center flex-col mb-3">
         <div className="">
@@ -108,11 +108,7 @@ const Login = () => {
         <button className="mt-4 flex">
           <div className="bg-no-repeat facebook-logo mr-1" />
           <button
-            onClick={() =>
-              toast.error(
-                "This function is being tested, please try again later"
-              )
-            }
+            onClick={() => toast.error("The feature is currently maintain.")}
             className="text-xs text-blue-900 font-semibold"
           >
             Log in with Facebook

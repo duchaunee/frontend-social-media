@@ -1,8 +1,8 @@
 import clsx from "clsx";
-import React from "react";
 
 // types
 
+// eslint-disable-next-line react/prop-types
 const SpinnerLogo = ({ className }) => {
   return (
     <svg

@@ -1,4 +1,4 @@
-export { default as Profile } from "./Profile";
+export { default as Profile } from "./Profile/Profile";
 export { default as Login } from "./Auth/Login";
 export { default as Register } from "./Auth/Register";
 export { default as ForgotPassword } from "./ResetPassword/ForgotPassword";

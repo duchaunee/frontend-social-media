@@ -1,5 +1,5 @@
+/* eslint-disable react/prop-types */
 import clsx from "clsx";
-import React from "react";
 
 function SpinnerRing(props) {
   return (

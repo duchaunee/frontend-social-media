@@ -15,6 +15,11 @@ import Sidebar from "../components/Sidebar/Sidebar";
 import Page404 from "../pages/404Page/Page.404";
 import { useContext } from "react";
 import { AppContext } from "../contexts/App.context";
+import EditProfile from "../pages/Profile/EditProfile";
+import AllFriend from "../pages/AllFriend/AllFriend";
+import Suggestions from "../pages/Suggestions/Suggestions";
+import RequestReceived from "../pages/RequestReceived/RequestReceived";
+import RequestSent from "../pages/RequestSent/RequestSent";
 
 const ProtectedRoute = () => {
   const { isAuthentication } = useContext(AppContext);
@@ -47,6 +52,46 @@ const useRouteElement = () => {
           element: (
             <Sidebar>
               <Profile />
+            </Sidebar>
+          ),
+        },
+        {
+          path: "/edit/profile",
+          element: (
+            <Sidebar>
+              <EditProfile />
+            </Sidebar>
+          ),
+        },
+        {
+          path: "/friend/all",
+          element: (
+            <Sidebar>
+              <AllFriend />
+            </Sidebar>
+          ),
+        },
+        {
+          path: "/friend/sent",
+          element: (
+            <Sidebar>
+              <RequestSent />
+            </Sidebar>
+          ),
+        },
+        {
+          path: "/friend/received",
+          element: (
+            <Sidebar>
+              <RequestReceived />
+            </Sidebar>
+          ),
+        },
+        {
+          path: "/friend/suggestions",
+          element: (
+            <Sidebar>
+              <Suggestions />
             </Sidebar>
           ),
         },

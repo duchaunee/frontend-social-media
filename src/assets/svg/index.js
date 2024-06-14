@@ -9,3 +9,6 @@ export { default as ThreeDot } from "./ThreeDot";
 export { default as Search } from "./Search";
 export { default as Settings } from "./Settings";
 export { default as LogoutSVG } from "./LogoutSVG";
+export { default as CloseSVG } from "./Close";
+export { default as PeopleSVG } from "./People";
+export { default as ProfileSettingSVG } from "./ProfileSetting";

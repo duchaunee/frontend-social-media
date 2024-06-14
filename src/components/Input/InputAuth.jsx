@@ -5,6 +5,8 @@ const InputAuth = (props) => {
   const { className, register, errors, ...others } = props;
 
   const errorMessage = errors[register?.name]?.message;
+  console.log("errors: ", errors);
+  console.log("errors[register?.name]: ", [register?.name]);
   return (
     <div className="">
       <input

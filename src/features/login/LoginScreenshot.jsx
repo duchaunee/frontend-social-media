@@ -26,7 +26,7 @@ const LoginScreenshot = () => {
   }, [setVisibleIndex]);
 
   return (
-    <div className={clsx("relative", "hidden lg:block h-[581.15px]")}>
+    <div key="" className={clsx("relative", "hidden lg:block h-[581.15px]")}>
       <img src={emptyScreenshot} alt="Screenshot" draggable={false} />
       {screenshots.map((screenshot, index) => (
         <img

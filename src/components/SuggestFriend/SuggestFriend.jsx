@@ -2,15 +2,12 @@
 import clsx from "clsx";
 import { userApi } from "../../apis";
 import toast from "react-hot-toast";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { useState } from "react";
+import { NavLink } from "react-router-dom";
 
-const SuggestFriend = ({ className }) => {
-  const queryClient = useQueryClient();
-
-  const { data: suggested } = useQuery({
-    queryKey: ["getSuggestFriend"],
-    queryFn: () => userApi.getSuggestFriend({ limit: 3 }),
-  });
+const ItemSuggestFriend = ({ f }) => {
+  const [statusAddFr, setStatusAddFr] = useState("Add Friend");
 
   const requestAddFriendMutation = useMutation({
     mutationFn: (friend_id) =>
@@ -19,9 +16,21 @@ const SuggestFriend = ({ className }) => {
       }),
     onSuccess: (requestFr) => {
       if (requestFr.sucess) {
-        //invalidateQueries getSuggestFriend khi ấn add friend
-        queryClient.invalidateQueries({ queryKey: ["getSuggestFriend"] });
+        setStatusAddFr("Undo Request");
         toast.success(requestFr.message);
+      }
+    },
+  });
+
+  const undoRequestFriendMutation = useMutation({
+    mutationFn: (friend_id) =>
+      userApi.undoRequestFriend({
+        requestTo: friend_id,
+      }),
+    onSuccess: (requestFr) => {
+      if (requestFr.success) {
+        setStatusAddFr("Add Friend");
+        toast.success("Undo successfully !");
       }
     },
   });
@@ -38,42 +47,75 @@ const SuggestFriend = ({ className }) => {
     }
   };
 
-  if (suggested?.data?.length <= 0) return;
+  const handleUndoFriend = (request_friend_id) => {
+    try {
+      undoRequestFriendMutation.mutate(request_friend_id);
+    } catch (error) {
+      console.log(error);
+      toast(error.message);
+    }
+  };
+
+  return (
+    <li className="flex pb-2 pt-4 px-4 last:pb-0 items-center">
+      <div className="flex">
+        <NavLink to={`/profile/${f._id}`}>
+          <img
+            className="h-10 w-10 rounded-full object-cover"
+            src={f?.profileUrl}
+          />
+        </NavLink>
+        <NavLink
+          to={`/profile/${f._id}`}
+          className="ml-3 overflow-hidden text-[#737373]"
+        >
+          <p className="text-sm font-medium text-black hover:underline">
+            {f.firstName} {f.lastName}
+          </p>
+          <p className="text-sm ">{f.friends.length} Friends</p>
+        </NavLink>
+      </div>
+      <div className="ml-auto">
+        <button
+          onClick={() => {
+            statusAddFr === "Add Friend"
+              ? handleAddFriend(f._id)
+              : handleUndoFriend(f._id);
+          }}
+          className={clsx(
+            "text-[12px] font-semibold hover:text-[#00376b]",
+            statusAddFr === "Add Friend" ? "text-[#0095F6]" : "text-gray-500"
+          )}
+        >
+          {statusAddFr}
+        </button>
+      </div>
+    </li>
+  );
+};
+
+const SuggestFriend = ({ className }) => {
+  // const queryClient = useQueryClient();
+  const { data: suggested } = useQuery({
+    queryKey: ["getSuggestFriend"],
+    queryFn: () => userApi.getSuggestFriend({ limit: 3 }),
+  });
+
+  if (!suggested?.data || suggested?.data.length <= 0) return;
   return (
     <div className={clsx("w-full", className)}>
       <div className="flex items-center justify-between py-1 px-4 text-[14px] font-semibold text-[#737373]">
         <span className="">Suggested for you</span>
-        <button className="text-[#000] hover:text-[#737373] text-[12px]">
+        <NavLink
+          to="/friend/suggestions"
+          className="text-[#000] hover:text-[#737373] text-[12px]"
+        >
           See All
-        </button>
+        </NavLink>
       </div>
-      <ul role="list" className="divide-y divide-slate-200">
-        {/* Remove top/bottom padding when first/last child */}
+      <ul role="list" className="">
         {suggested?.data &&
-          suggested?.data.map((f) => (
-            <li
-              key={f._id}
-              className="flex pb-2 pt-4 px-4 last:pb-0 items-center"
-            >
-              <div className="flex">
-                <img className="h-10 w-10 rounded-full" src={f?.profileUrl} />
-                <div className="ml-3 overflow-hidden text-[#737373]">
-                  <p className="text-sm font-medium text-black">
-                    {f.firstName} {f.lastName}
-                  </p>
-                  <p className="text-sm ">{f.friends.length} Friends</p>
-                </div>
-              </div>
-              <div className="ml-auto">
-                <button
-                  onClick={() => handleAddFriend(f._id)}
-                  className="text-[12px] text-[#0095F6] font-semibold hover:text-[#00376b]"
-                >
-                  Add Friend
-                </button>
-              </div>
-            </li>
-          ))}
+          suggested?.data.map((f) => <ItemSuggestFriend key={f._id} f={f} />)}
       </ul>
     </div>
   );
