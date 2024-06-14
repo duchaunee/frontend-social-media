@@ -1,8 +1,8 @@
 export const saveAccessTokenToSession = (access_token) => {
-  sessionStorage.setItem("AccessToken", access_token);
+  localStorage.setItem("AccessToken", access_token);
 };
 export const clearAccessTokenToSession = () => {
-  sessionStorage.removeItem("AccessToken");
+  localStorage.removeItem("AccessToken");
 };
 export const getAccessTokenToSession = () =>
-  sessionStorage.getItem("AccessToken") || "";
+  localStorage.getItem("AccessToken") || "";
