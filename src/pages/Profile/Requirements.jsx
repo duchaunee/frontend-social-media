@@ -5,10 +5,10 @@ const LabelInfomation = (props) => {
   const { title, desc } = props;
   return (
     <li className="my-1">
-      <span className="font-medium mr-1 bg-gray-600 text-white p-1 rounded-sm">
+      <span className="font-medium mr-1 bg-gray-600 text-white p-1 rounded-sm inline-block">
         {title}
       </span>
-      {desc}
+      <span className="text-wrap">{desc}</span>
     </li>
   );
 };
