@@ -6,7 +6,7 @@ import { getStorage } from "firebase/storage";
 const { VITE_API_KEY_FIREBASE } = import.meta.env;
 //duchaunee
 export const firebaseConfig = {
-  apiKey: VITE_API_KEY_FIREBASE,
+  apiKey: "AIzaSyDUzHs-1GZd5wwcYSplp5T14hagQZ4l8pY",
   authDomain: "shoes-shopping-web.firebaseapp.com",
   projectId: "shoes-shopping-web",
   storageBucket: "shoes-shopping-web.appspot.com",
