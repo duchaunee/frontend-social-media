@@ -14,7 +14,7 @@ import VerifyEmail from "../pages/VerifyEmail";
 import Sidebar from "../components/Sidebar/Sidebar";
 import Page404 from "../pages/404Page/Page.404";
 import { useContext } from "react";
-import { AppContext } from "../contexts/App.context";
+import { AppContext } from "../contexts/app.context";
 import EditProfile from "../pages/Profile/EditProfile";
 import AllFriend from "../pages/AllFriend/AllFriend";
 import Suggestions from "../pages/Suggestions/Suggestions";

@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import SuggestFriend from "../../components/SuggestFriend/SuggestFriend";
-import { AppContext } from "../../contexts/App.context";
+import { AppContext } from "../../contexts/app.context";
 import FriendRequestReceived from "../../components/FriendRequestReceived/FriendRequestReceived";
 import PostsHome from "../../components/Posts/Posts.home";
 

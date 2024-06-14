@@ -7,7 +7,7 @@ import { useContext, useEffect, useState } from "react";
 import Requirements from "./Requirements";
 import PasswordForm from "./ChangePassword";
 import InputForm from "./InputForm";
-import { AppContext } from "../../contexts/App.context";
+import { AppContext } from "../../contexts/app.context";
 import {
   QueryClient,
   useMutation,

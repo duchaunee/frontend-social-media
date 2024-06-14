@@ -2,7 +2,7 @@
 /* eslint-disable react/prop-types */
 import { useContext, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
-import { AppContext } from "../../contexts/App.context";
+import { AppContext } from "../../contexts/app.context";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { postApi } from "../../apis";
 import { IconComment, IconHeart, IconSave, IconShare } from "../../assets/Icon";

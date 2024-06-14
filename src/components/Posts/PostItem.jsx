@@ -8,7 +8,7 @@ import toast from "react-hot-toast";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useContext } from "react";
-import { AppContext } from "../../contexts/App.context";
+import { AppContext } from "../../contexts/app.context";
 
 const PostItem = ({ p }) => {
   const { user, setOverlayPostId } = useContext(AppContext);

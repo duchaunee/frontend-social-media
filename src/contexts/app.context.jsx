@@ -4,7 +4,7 @@ import {
   clearAccessTokenToSession,
   getAccessTokenToSession,
 } from "../utils/auth.js";
-import { userApi } from "../apis";
+import { userApi } from "../apis/index.js";
 import { useQuery } from "@tanstack/react-query";
 // import * as firebaseConfig from "../firebaseConfig/firebase.config"; //khai báo để file khởi chạy --> tạo ra instance các hàm firebase khi chạy app, nếu import ở các file khác thì nó lấy ra file này từ cache chứ không chạy lại file nữa
 

@@ -7,7 +7,7 @@ import clsx from "clsx";
 import { authApi } from "../../apis";
 import toast from "react-hot-toast";
 import { useContext, useRef } from "react";
-import { AppContext } from "../../contexts/App.context";
+import { AppContext } from "../../contexts/app.context";
 // import LoadingBar from "react-top-loading-bar";
 import PeopleImage from "../../assets/icon-image/PeopleImage";
 import RequestSent from "../../assets/icon-image/RequestSent";

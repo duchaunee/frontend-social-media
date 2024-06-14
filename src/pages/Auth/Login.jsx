@@ -6,7 +6,7 @@ import { ButtonLoading } from "../../components/Button";
 import { useContext, useRef, useState } from "react";
 import axiosInstance from "../../axios";
 import toast from "react-hot-toast";
-import { AppContext } from "../../contexts/App.context";
+import { AppContext } from "../../contexts/app.context";
 // import LoadingBar from "react-top-loading-bar";
 
 const Login = () => {

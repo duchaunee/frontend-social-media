@@ -9,7 +9,7 @@ import ButtonPrimary from "../../components/Button/ButtonPrimary.jsx";
 import { useNavigate, useParams } from "react-router-dom";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { postApi, userApi } from "../../apis";
-import { AppContext } from "../../contexts/App.context";
+import { AppContext } from "../../contexts/app.context";
 import toast from "react-hot-toast";
 import { useState } from "react";
 import EmptyData from "../../components/EmptyData";
