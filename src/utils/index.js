@@ -14,8 +14,8 @@ export const formatNumber = (number) => {
 };
 
 export const formatTimePost = (time) => {
-  const now = new Date();
   const pastDate = new Date(time);
+  const now = new Date();
   const diff = now - pastDate; // Thời gian trôi qua tính bằng milliseconds
 
   const seconds = Math.floor(diff / 1000);
