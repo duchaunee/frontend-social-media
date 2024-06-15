@@ -23,16 +23,16 @@ export const formatTimePost = (time) => {
   const hours = Math.floor(minutes / 60);
   const days = Math.floor(hours / 24);
 
-  if (days > 2) {
+  if (days >= 2) {
     const day = pastDate.getDate();
     const month = pastDate.getMonth() + 1;
     const year = pastDate.getFullYear();
     return `${day}/${month}/${year}`;
-  } else if (days > 1) {
+  } else if (days >= 1) {
     return `a day ago`;
-  } else if (hours < 1) {
+  } else if (hours <= 1) {
     return `${minutes} minutes ago`;
-  } else if (hours < 2) {
+  } else if (hours <= 2) {
     return `1 hour ago`;
   } else {
     return `${hours} hours ago`;
