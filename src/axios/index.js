@@ -43,7 +43,7 @@ axiosInstance.interceptors.response.use(
     return response.data;
   },
   (error) => {
-    console.log("Error trong axios: ", error);
+    // console.log("Error trong axios: ", error);
     return Promise.reject(error.response.data);
   }
 );

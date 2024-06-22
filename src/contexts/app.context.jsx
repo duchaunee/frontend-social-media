@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { createContext, useLayoutEffect, useState } from "react";
+import { createContext, useEffect, useLayoutEffect, useState } from "react";
 import {
   clearAccessTokenToSession,
   getAccessTokenToSession,
@@ -25,7 +25,7 @@ export const AppProvider = ({ children }) => {
     initialAppContext.overlayPostId
   );
 
-  const { data, isSuccess, isError } = useQuery({
+  const { data, isSuccess, isError, isFetched } = useQuery({
     queryKey: ["getMe"],
     queryFn: () => userApi.getMe(),
   });
@@ -33,14 +33,16 @@ export const AppProvider = ({ children }) => {
   // console.log("user: ", user);
 
   useLayoutEffect(() => {
-    if (isSuccess) {
-      setIsAuthentication(true);
-    } else if (isError) {
-      clearAccessTokenToSession(); //cái này mà mất mạng phát là bị logout à =))))))))))
-      setIsAuthentication(false);
+    if (isFetched) {
+      if (isSuccess) {
+        setIsAuthentication(true);
+      } else if (isError) {
+        clearAccessTokenToSession(); //cái này mà mất mạng phát là bị logout à =))))))))))
+        setIsAuthentication(false);
+      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  });
 
   // if (!data) return;
 
